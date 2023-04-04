@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Student Logs</title>
+    <meta charset="UTF-8" />
+    <link
+      rel="shortcut icon"
+      href="https://www.uvu.edu/_common/images/uvu-mono.svg"
+      type="image/x-icon"
+    />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              darkgreen: '#275D38',
+              green: '#00843D',
+              lightgreen: '#4BA23F',
+              brightgreen: '#78BE1F',
+              coolgray: '#A7A8AA',
+            },
+          },
+        },
+        darkMode: 'class',
+      };
+    </script>
+    <style type="text/tailwindcss">
+      @layer components {
+        body {
+          font-family: 'Rajdhani', sans-serif;
+        }
+        label {
+          @apply font-black text-3xl text-slate-800 dark:text-white;
+        }
+        input[type='text'],
+        select,
+        textarea {
+          @apply w-full p-4 rounded my-2 border-0 bg-slate-100 dark:bg-slate-800 dark:border dark:border-white dark:text-white;
+        }
+        li {
+          @apply w-full p-4 my-4 rounded bg-slate-100 hover:bg-lightgreen hover:text-white dark:bg-slate-800 dark:border dark:border-white dark:text-white dark:hover:bg-lightgreen;
+        }
+      }
+    </style>
+    <!-- This is the custom CSS, try to convert to tailwind -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Rajdhani"
+    />
+  </head>
+  <body class="bg-darkgreen dark:bg-slate-700">
+    <button
+      id="lightDarkBtn"
+      type="button"
+      class="
+        bg-brightgreen
+        text-white
+        p-4
+        w-full
+        rounded
+        hover:animate-pulse
+        dark:bg-darkgreen
+      "
+    >
+      Light / Dark Mode
+    </button>
+    <form
+      class="
+        p-8
+        sm:w-full
+        md:w-4/5
+        lg:w-3/5
+        mx-auto
+        md:my-6
+        rounded
+        drop-shadow-xl
+      "
+    >
+      <div
+        id="inputContainer"
+        class="
+          px-20
+          pt-10
+          pb-20
+          flex-col
+          rounded
+          drop-shadow-xl
+          bg-white
+          my-4
+          dark:bg-slate-800 dark:text-white
+        "
+      >
+        <label for="courses">Your Courses</label><br />
+        <select
+          aria-label="Select Course"
+          id="course"
+          name="course"
+          data-cy="course_select"
+        >
+          <option selected value="">Choose Courses</option>
+        </select>
+
+        <div id="uvuIdBox" style="display: none">
+          <br />
+          <label for="uvuId">UVU ID</label><br />
+          <input
+            type="text"
+            id="uvuId"
+            name="uvuId"
+            data-cy="uvuId_input"
+            maxlength="8"
+            placeholder="10234567"
+            pattern="[0-9]+"
+            required
+          />
+        </div>
+      </div>
+
+      <div
+        id="logContainer"
+        style="display: none"
+        class="
+          px-20
+          pt-10
+          pb-20
+          flex-col
+          rounded
+          drop-shadow-xl
+          my-4
+          bg-white
+          dark:bg-slate-800
+        "
+      >
+        <label id="uvuIdDisplay" data-cy="uvuIdDisplay"></label><br /><br />
+        <ul id="uvuLogs" data-cy="logs"></ul>
+      </div>
+
+      <div
+        id="newLogContainer"
+        class="
+          px-20
+          pt-10
+          pb-20
+          flex-col
+          rounded
+          drop-shadow-xl
+          bg-white
+          my-4
+          dark:bg-slate-800
+        "
+      >
+        <label>New Log</label>
+        <textarea
+          id="newLog"
+          aria-label="add log textarea"
+          data-cy="log_textarea"
+          rows="3"
+        ></textarea
+        ><br />
+        <button
+          id="newLogBtn"
+          type="submit"
+          data-cy="add_log_btn"
+          class="
+            bg-brightgreen
+            text-white
+            p-4
+            my-2
+            w-full
+            rounded
+            disabled:opacity-50 disabled:cursor-not-allowed
+            hover:animate-pulse
+          "
+          disabled
+        >
+          Add Log
+        </button>
+      </div>
+    </form>
+
+    <a
+      href="https://www.uvu.edu/whyuvu/"
+      id="footerlogo"
+      class="w-16 h-14 bg-no-repeat block mx-auto my-2"
+      style="
+        background-image: url('https://www.uvu.edu/_common/images/hpob.png');
+      "
+      width="50px"
+    >
+    </a>
+
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
